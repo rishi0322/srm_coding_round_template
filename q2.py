@@ -14,7 +14,6 @@ After the entire list has been processed, determine how many numbers are still
 active.
 
 Return this final count.
-
 Examples:
 ---------
 Input: [1, 2, 2, 3]  → Output: 2
@@ -43,6 +42,9 @@ Input: []  → Output: 0
 """
 
 
+from inspect import stack
+
+
 def compressed_stack_length(lst):
     """
     Calculate the number of elements remaining after cancellations.
@@ -66,7 +68,17 @@ def compressed_stack_length(lst):
     """
     # TODO: Implement your solution here
     pass
-
+    stack = []
+    
+    for num in lst:
+        if not stack:
+            stack.append(num)
+        elif stack[-1] == num:
+            stack.pop()
+        else:
+            stack.append(num)
+    
+    return len(stack)
 
 if __name__ == "__main__":
     # Test your solution here
